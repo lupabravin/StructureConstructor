@@ -39,8 +39,11 @@ Lista* searchList(char* ID, Lista* x)
 
 	Lista* p = x->first;
 
-	while (strcmp(p->ID, ID) != 0)
-		p = p->nextList;
+	if (p != NULL)
+	{
+		while (strcmp(p->ID, ID) != 0)
+			p = p->nextList;
+	}
 
 	return p;
 }
@@ -100,8 +103,9 @@ Lista* removeList(char* ID, Lista* x)
 	}
 
 	if (last == NULL && p->nextList != NULL) {
+		aux = p->nextList;
 		free(p);
-		return p->nextList;
+		return aux;
 	}
 	else if (p->nextList == NULL) return NULL;
 
@@ -175,12 +179,14 @@ Lista* removeElementAt(Lista* p, int index)
 
 	if (index == 0)
 	{
+		if (p->prox == NULL) return NULL;
+
 		aux = p->prox;
 		return aux;
 	}
 	else 
 	{
-		while (count < index + countListElements(aux) - 1)
+		while (count < index )
 		{
 			count++;
 			prev = aux;

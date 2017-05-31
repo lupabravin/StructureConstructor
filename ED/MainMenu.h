@@ -119,14 +119,14 @@ namespace Project {
 				 this->adicionarElementoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->removerElementoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->alterarElementoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->verStatusToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->excluirListaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->cmsFila = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 				 this->getInfo = (gcnew System::Windows::Forms::TextBox());
 				 this->Request = (gcnew System::Windows::Forms::Label());
 				 this->btnSubmit = (gcnew System::Windows::Forms::Button());
 				 this->labelStatus = (gcnew System::Windows::Forms::Label());
 				 this->tblPrint = (gcnew System::Windows::Forms::TableLayoutPanel());
-				 this->verStatusToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-				 this->excluirListaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->cmsPilha->SuspendLayout();
 				 this->cmsLista->SuspendLayout();
 				 this->SuspendLayout();
@@ -214,7 +214,7 @@ namespace Project {
 						 this->removerElementoToolStripMenuItem, this->alterarElementoToolStripMenuItem, this->verStatusToolStripMenuItem1, this->excluirListaToolStripMenuItem
 				 });
 				 this->cmsLista->Name = L"contextMenuStrip1";
-				 this->cmsLista->Size = System::Drawing::Size(179, 136);
+				 this->cmsLista->Size = System::Drawing::Size(179, 114);
 				 this->cmsLista->Opened += gcnew System::EventHandler(this, &MyForm::cmsLista_Opened);
 				 // 
 				 // adicionarElementoToolStripMenuItem
@@ -236,6 +236,20 @@ namespace Project {
 				 this->alterarElementoToolStripMenuItem->Name = L"alterarElementoToolStripMenuItem";
 				 this->alterarElementoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->alterarElementoToolStripMenuItem->Text = L"Alterar Posições";
+				 // 
+				 // verStatusToolStripMenuItem1
+				 // 
+				 this->verStatusToolStripMenuItem1->Name = L"verStatusToolStripMenuItem1";
+				 this->verStatusToolStripMenuItem1->Size = System::Drawing::Size(178, 22);
+				 this->verStatusToolStripMenuItem1->Text = L"Ver Status";
+				 this->verStatusToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::printList_Click);
+				 // 
+				 // excluirListaToolStripMenuItem
+				 // 
+				 this->excluirListaToolStripMenuItem->Name = L"excluirListaToolStripMenuItem";
+				 this->excluirListaToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->excluirListaToolStripMenuItem->Text = L"Excluir Lista";
+				 this->excluirListaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::removeList_Click);
 				 // 
 				 // cmsFila
 				 // 
@@ -289,7 +303,7 @@ namespace Project {
 				 this->tblPrint->BackColor = System::Drawing::SystemColors::Desktop;
 				 this->tblPrint->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::OutsetDouble;
 				 this->tblPrint->ColumnCount = 1;
-				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 599)));
+				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 602)));
 				 this->tblPrint->GrowStyle = System::Windows::Forms::TableLayoutPanelGrowStyle::AddColumns;
 				 this->tblPrint->Location = System::Drawing::Point(362, 14);
 				 this->tblPrint->Name = L"tblPrint";
@@ -298,19 +312,6 @@ namespace Project {
 				 this->tblPrint->Size = System::Drawing::Size(578, 21);
 				 this->tblPrint->TabIndex = 10;
 				 this->tblPrint->Visible = false;
-				 // 
-				 // verStatusToolStripMenuItem1
-				 // 
-				 this->verStatusToolStripMenuItem1->Name = L"verStatusToolStripMenuItem1";
-				 this->verStatusToolStripMenuItem1->Size = System::Drawing::Size(178, 22);
-				 this->verStatusToolStripMenuItem1->Text = L"Ver Status";
-				 this->verStatusToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::printList_Click);
-				 // 
-				 // excluirListaToolStripMenuItem
-				 // 
-				 this->excluirListaToolStripMenuItem->Name = L"excluirListaToolStripMenuItem";
-				 this->excluirListaToolStripMenuItem->Size = System::Drawing::Size(178, 22);
-				 this->excluirListaToolStripMenuItem->Text = L"Excluir Lista";
 				 // 
 				 // MyForm
 				 // 
@@ -394,9 +395,7 @@ namespace Project {
 	private: System::Void btnFila_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		Button^ newButton = gcnew System::Windows::Forms::Button();
-		//then we have to add it to our Form
 		this->panel1->Controls->Add(newButton);
-		//then optionally assign various properties to your button, e.g. Location, Size, Text, Tag, event handlers etc...
 		newButton->Location = System::Drawing::Point(_currentX, _currentY);
 
 		if (_currentX < 1000)
@@ -430,7 +429,7 @@ namespace Project {
 
 		switch (_submit)
 		{
-		case 0: //Pilha Push
+		case 0: //Pilha Push			
 			if (thisButton->Tag->Equals("NULL"))
 			{
 				p = criarPilha(p);
@@ -475,7 +474,7 @@ namespace Project {
 				l = addElement(ID, value, l);
 
 				if (firstList == NULL) {
-					firstList = l;
+					firstList = l->first;
 					firstList->nextList = NULL;
 				}
 
@@ -506,7 +505,17 @@ namespace Project {
 			if (thisButton->Tag->Equals("NULL")) return;
 			Lista* currentList;
 
-			currentList = searchList(ID, firstList)->first;
+			currentList = searchList(ID, firstList);
+
+			if (currentList == NULL)
+			{
+				thisButton->Tag = "NULL";
+				return;
+			}
+
+			if (countListElements(currentList) != 1)
+				currentList = searchList(ID, firstList)->first;
+
 			currentList->first = removeElementAt(currentList->first, value);
 
 			count = countListElements(currentList->first);
@@ -670,9 +679,17 @@ namespace Project {
 		std::string str = toStandardString(thisButton->Name);
 		char *ID = strdup(str.c_str());
 
-		if (thisButton->Tag->Equals("NULL")) return;
-
 		currentList = searchList(ID, firstList);
+
+		if (currentList == NULL)
+			thisButton->Tag = "NULL";
+
+		if (thisButton->Tag->Equals("NULL"))
+		{
+			tblPrint->Visible = false;
+			tblPrint->Controls->Clear();
+			return;
+		}
 
 		l = currentList;
 
@@ -689,7 +706,16 @@ namespace Project {
 		}
 
 	}
-	};
+	private: System::Void removeList_Click(System::Object^  sender, System::EventArgs^  e) {
+		Button^ thisButton = _newButton;
+		Lista* l;
+		std::string str = toStandardString(thisButton->Name);
+		char *ID = strdup(str.c_str());
+
+		firstList = removeList(ID, firstList);
+		panel1->Controls->Remove(thisButton);
+	}
+};
 	//--------------------------------------------------
 }
 
