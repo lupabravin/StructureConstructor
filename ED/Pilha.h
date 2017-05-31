@@ -12,7 +12,7 @@ extern "C" {
 	typedef struct pilha Pilha;
 
 	//==============================================================================
-	Pilha* criar(Pilha* p);
+	Pilha* criarPilha(Pilha* p);
 	int pileElement(int value, Pilha* p);
 	Pilha* push(char * ID, int x, Pilha* p);
 	Pilha* searchPile(char* ID, Pilha* firstPile);

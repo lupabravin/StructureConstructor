@@ -23,12 +23,16 @@ int countPileElements(Pilha* p)
 
 int pileElement(int value, Pilha* p)
 {
-	Pilha* aux = p->top;
+	Pilha* aux;
 	int count = 0;
+
+	if (p == p->top)
+		aux = p;
+	else
+		aux = p->top;
+
 	for (count; count < value; count++)
-	{
 		aux = aux->prox;
-	}
 
 	return aux->info;
 }
@@ -37,7 +41,7 @@ Pilha* searchPile(char* ID, Pilha* x)
 {
 	Pilha* p = x;
 
-	while (strcmp(p->ID,ID) != 0)
+	while (strcmp(p->ID, ID) != 0)
 		p = p->nextPile;
 
 	return p;
@@ -45,6 +49,16 @@ Pilha* searchPile(char* ID, Pilha* x)
 
 void freePile(Pilha* x)
 {
+	Pilha * aux = x->top;
+	Pilha * toDelete;
+
+	while (aux->prox != NULL)
+	{
+		toDelete = aux;
+		aux = aux->prox;
+		free(toDelete);
+	}
+
 	free(x);
 }
 
@@ -57,13 +71,13 @@ Pilha* removePile(char* ID, Pilha* x)
 	Pilha* aux;
 
 	while (strcmp(p->ID, ID) != 0)
-	{	
+	{
 		last = p;
 		p = p->nextPile;
 	}
 
 	if (last == NULL && p->nextPile != NULL) {
-		free(p); 
+		free(p);
 		return p->nextPile;
 	}
 	else if (p->nextPile == NULL) return NULL;
@@ -77,7 +91,7 @@ Pilha* removePile(char* ID, Pilha* x)
 	return x;
 }
 
-Pilha* criar(Pilha* p)
+Pilha* criarPilha(Pilha* p)
 {
 	p = NULL;
 	return p;
@@ -85,15 +99,11 @@ Pilha* criar(Pilha* p)
 
 Pilha* push(char * ID, int x, Pilha* p)
 {
-	Pilha* pont;
-	if ((pont = (Pilha*) malloc(sizeof(Pilha))) == NULL)
-		printf("Memoria insulficiente\n");
-	else {
-		pont->info = x;
-		pont->ID = ID;
-		pont->prox = p;
-		pont->top = pont;
-	}
+	Pilha* pont = (Pilha*) malloc(sizeof(Pilha));
+	pont->info = x;
+	pont->ID = ID;
+	pont->prox = p;
+	pont->top = pont;
 	return pont;
 }
 Pilha* pop(Pilha* p)
