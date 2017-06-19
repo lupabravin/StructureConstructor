@@ -127,10 +127,14 @@ Fila* add(char * ID, int x, Fila* p)
 Fila* retirar(Fila* p)
 {
 	Fila * aux = lastElementFila(p);
-	if (aux == NULL) return aux;
+	Fila * liberate;
 
-	aux->prev->prox = NULL;
-	aux->top->bot = aux->prev;
+	if (aux == NULL) return aux;
+	liberate = aux;
+	liberate->prev->prox = NULL;
+	p = aux->top;
+	p->bot = liberate->prev;
+	free(liberate);
 
 	return p;
 };
