@@ -19,7 +19,7 @@ extern "C" {
 	int filaElement(int value, Fila* p);
 	Fila* add(char * ID, int x, Fila* p);
 	Fila* searchfila(char* ID, Fila* firstfila);
-	Fila* retirar(Fila* p);
+	Fila* retirar(char* ID, Fila* filaCollection);
 	int countfilaElements(Fila* p);
 	Fila* removeFila(char* ID, Fila* x);
 	Fila* lastElementFila(Fila* l);

@@ -124,19 +124,23 @@ Fila* add(char * ID, int x, Fila* p)
 
 	return pont;
 }
-Fila* retirar(Fila* p)
+Fila* retirar(char* ID, Fila* filaCollection)
 {
+	Fila* p = searchfila(ID, filaCollection)->top;
 	Fila * aux = lastElementFila(p);
-	Fila * liberate;
+	
 
-	if (aux == NULL) return aux;
-	liberate = aux;
+	if (aux == NULL)
+		return NULL;
+
+	Fila * liberate = aux;
+
 	liberate->prev->prox = NULL;
 	p->top = aux->top;
 	p->bot = liberate->prev;
 	free(liberate);
 
-	return p;
+	return filaCollection;
 };
 
 
