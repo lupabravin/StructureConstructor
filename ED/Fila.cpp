@@ -132,7 +132,7 @@ Fila* retirar(Fila* p)
 	if (aux == NULL) return aux;
 	liberate = aux;
 	liberate->prev->prox = NULL;
-	p = aux->top;
+	p->top = aux->top;
 	p->bot = liberate->prev;
 	free(liberate);
 

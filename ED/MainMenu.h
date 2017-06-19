@@ -834,7 +834,7 @@ namespace Project {
 
 		if (thisButton->Tag->Equals("NULL")) return;
 
-		f = searchfila(ID, firstFila);
+		f = searchfila(ID, firstFila)->top;
 		f = retirar(f);
 
 		Int32 count = countfilaElements(f);
