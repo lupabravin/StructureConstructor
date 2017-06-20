@@ -110,6 +110,17 @@ Fila* lastElementFila(Fila* f)
 	return aux;
 }
 
+int getOrder(char * ID, Fila * currentFila)
+{
+	int count = 0;
+	Fila* p = currentFila;
+
+	while (strcmp(p->ID, ID) != 0)
+		count++;
+
+	return count;
+}
+
 Fila* add(char * ID, int x, Fila* p)
 {
 	Fila* pont = (Fila*)malloc(sizeof(Fila));
@@ -124,23 +135,39 @@ Fila* add(char * ID, int x, Fila* p)
 
 	return pont;
 }
-Fila* retirar(char* ID, Fila* filaCollection)
+
+Fila * reorder(Fila * filaCollection, char * ID)
 {
-	Fila* p = searchfila(ID, filaCollection)->top;
-	Fila * aux = lastElementFila(p);
+	Fila * aux = filaCollection;
 	
-
-	if (aux == NULL)
-		return NULL;
-
-	Fila * liberate = aux;
-
-	liberate->prev->prox = NULL;
-	p->top = aux->top;
-	p->bot = liberate->prev;
-	free(liberate);
+	if (filaCollection->nextfila == NULL)
+	{
+		filaCollection = filaCollection->top;
+		filaCollection->nextfila = NULL;
+	}
+	else
+	{
+		while (aux->prox != NULL)
+		{
+			aux = aux->top;
+			aux = aux->nextfila;
+		}
+	}
 
 	return filaCollection;
+}
+
+Fila* retirar(char* ID, Fila* filaCollection)
+{
+
+	Fila * currentFila = searchfila(ID, filaCollection)->top;
+	Fila * lastElement = lastElementFila(currentFila);
+
+	lastElement->prev->prox = NULL;
+	currentFila->bot = lastElement->prev;
+	free(lastElement);
+
+	return currentFila;
 };
 
 

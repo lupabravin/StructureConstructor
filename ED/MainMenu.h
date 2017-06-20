@@ -597,7 +597,7 @@ namespace Project {
 					while (aux->nextfila != NULL)
 						aux = aux->nextfila;
 
-					aux->nextfila = f;
+					aux->nextfila = f->top;
 					aux->nextfila->nextfila = NULL;
 				}
 				count = 1;
@@ -833,8 +833,18 @@ namespace Project {
 		char *ID = strdup(str.c_str());
 
 		if (thisButton->Tag->Equals("NULL")) return;
+		firstFila = reorder(firstFila, ID);
 		f = searchfila(ID, firstFila);
-		firstFila = retirar(ID, firstFila);
+
+		if (countfilaElements(f) == 1)
+		{
+			firstFila = removeFila(ID, firstFila);
+			f = NULL;
+			thisButton->Tag = "NULL";
+		}
+
+		else
+			f = retirar(ID, firstFila);
 
 		Int32 count = countfilaElements(f);
 		thisButton->Text = gcnew String(std::to_string(count).c_str());

@@ -23,4 +23,6 @@ extern "C" {
 	int countfilaElements(Fila* p);
 	Fila* removeFila(char* ID, Fila* x);
 	Fila* lastElementFila(Fila* l);
+	int getOrder(Fila* currentFila);
+	Fila* reorder(Fila * filaCollection, char * ID);
 }
