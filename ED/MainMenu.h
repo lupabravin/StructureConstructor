@@ -269,7 +269,7 @@ namespace Project {
 						 this->removerToolStripMenuItem, this->verStatusToolStripMenuItem2, this->excluirFilaToolStripMenuItem
 				 });
 				 this->cmsFila->Name = L"contextMenuStrip1";
-				 this->cmsFila->Size = System::Drawing::Size(179, 114);
+				 this->cmsFila->Size = System::Drawing::Size(179, 92);
 				 this->cmsFila->Opened += gcnew System::EventHandler(this, &MyForm::cmsFila_Opened);
 				 // 
 				 // adicionarToolStripMenuItem
@@ -347,7 +347,7 @@ namespace Project {
 				 this->tblPrint->BackColor = System::Drawing::SystemColors::Desktop;
 				 this->tblPrint->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::OutsetDouble;
 				 this->tblPrint->ColumnCount = 1;
-				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 608)));
+				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 611)));
 				 this->tblPrint->GrowStyle = System::Windows::Forms::TableLayoutPanelGrowStyle::AddColumns;
 				 this->tblPrint->Location = System::Drawing::Point(362, 14);
 				 this->tblPrint->Name = L"tblPrint";

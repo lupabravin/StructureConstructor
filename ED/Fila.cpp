@@ -1,3 +1,4 @@
+
 extern "C" {
 #include "Fila.h"
 #include <stdio.h>  
@@ -147,9 +148,9 @@ Fila * reorder(Fila * filaCollection, char * ID)
 	}
 	else
 	{
-		while (aux->prox != NULL)
+		while (aux->nextfila != NULL)
 		{
-			aux = aux->top;
+			aux->nextfila = aux->nextfila->top;
 			aux = aux->nextfila;
 		}
 	}
