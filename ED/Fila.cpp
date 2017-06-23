@@ -58,16 +58,19 @@ void freefila(Fila* x)
 		toDelete = aux;
 		aux = aux->prox;
 		free(toDelete);
+		toDelete = NULL;
 	}
 
 	free(x);
+	x = NULL;
 }
 
-Fila* removeFila(char* ID, Fila* x)
+Fila* removeFila(char* ID, Fila* filaCollection)
 {
-	if (x == NULL) return NULL;
+	filaCollection = reorder(filaCollection);
+	if (filaCollection == NULL) return NULL;
 
-	Fila* p = x;
+	Fila* p = filaCollection;
 	Fila* last = NULL;
 	Fila* aux;
 
@@ -77,19 +80,32 @@ Fila* removeFila(char* ID, Fila* x)
 		p = p->nextfila;
 	}
 
-	if (last == NULL && p->nextfila != NULL) {
-		free(p);
-		return p->nextfila;
+	if (last == NULL && p->nextfila != NULL) { // caso seja o primeiro e tenha próximo
+		aux = p->nextfila;
+		freefila(p);
+		p = NULL;
+		return aux;
 	}
-	else if (p->nextfila == NULL) return NULL;
 
-	aux = p;
+	else if (last == NULL && p->nextfila == NULL) // caso seja o único elemento
+		return NULL;
 
-	freefila(p);
+	else if (last != NULL && p->nextfila != NULL) // caso esteja no meio da lista
+	{
+		last->nextfila = p->nextfila;
+		freefila(p);
+		p = NULL;
+		return filaCollection;
+	}
 
-	last->nextfila = aux->nextfila;
-
-	return x;
+	else				 // caso seja o último
+	{
+		last->nextfila = NULL;
+		freefila(p);
+		p = NULL;
+		return filaCollection;
+	}
+	
 }
 
 Fila* criarFila(Fila* p)
@@ -137,10 +153,11 @@ Fila* add(char * ID, int x, Fila* p)
 	return pont;
 }
 
-Fila * reorder(Fila * filaCollection, char * ID)
+Fila * reorder(Fila * filaCollection)
 {
 	Fila * aux = filaCollection;
-	
+	Fila * last;
+
 	if (filaCollection->nextfila == NULL)
 	{
 		filaCollection = filaCollection->top;
@@ -150,6 +167,7 @@ Fila * reorder(Fila * filaCollection, char * ID)
 	{
 		while (aux->nextfila != NULL)
 		{
+			aux->nextfila->top->nextfila = aux->nextfila->nextfila;
 			aux->nextfila = aux->nextfila->top;
 			aux = aux->nextfila;
 		}
@@ -167,6 +185,7 @@ Fila* retirar(char* ID, Fila* filaCollection)
 	lastElement->prev->prox = NULL;
 	currentFila->bot = lastElement->prev;
 	free(lastElement);
+	lastElement == NULL;
 
 	return currentFila;
 };

@@ -827,13 +827,14 @@ namespace Project {
 
 	private: System::Void popFila_Click(System::Object^  sender, System::EventArgs^  e) {
 		Button^ thisButton = _newButton;
-		Fila* f, *x;
+		Fila* f, *x, *teste;
 
 		std::string str = toStandardString(thisButton->Name);
 		char *ID = strdup(str.c_str());
 
 		if (thisButton->Tag->Equals("NULL")) return;
-		firstFila = reorder(firstFila, ID);
+		firstFila = reorder(firstFila);
+		teste = firstFila;
 		f = searchfila(ID, firstFila);
 
 		if (countfilaElements(f) == 1)

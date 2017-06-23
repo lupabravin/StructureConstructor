@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED", "ED\ED.vcxproj", "{ED68C67F-9E55-4738-9975-ABC7E7E67EDF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project", "ED\ED.vcxproj", "{ED68C67F-9E55-4738-9975-ABC7E7E67EDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,7 @@ Global
 		{ED68C67F-9E55-4738-9975-ABC7E7E67EDF}.Release|x64.Build.0 = Release|x64
 		{ED68C67F-9E55-4738-9975-ABC7E7E67EDF}.Release|x86.ActiveCfg = Release|Win32
 		{ED68C67F-9E55-4738-9975-ABC7E7E67EDF}.Release|x86.Build.0 = Release|Win32
+		{ED68C67F-9E55-4738-9975-ABC7E7E67EDF}.Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
