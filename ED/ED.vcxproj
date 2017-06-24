@@ -149,6 +149,7 @@
     <ClCompile Include="Lista.cpp" />
     <ClCompile Include="Fila.cpp" />
     <ClCompile Include="Pilha.cpp" />
+    <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fila.h" />
@@ -158,6 +159,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainMenu.resx">
