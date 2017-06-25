@@ -97,6 +97,7 @@ extern "C" {
 	private: System::Windows::Forms::ToolStripMenuItem^  removerToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  verStatusToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^  excluirFilaToolStripMenuItem;
+	private: System::Windows::Forms::Button^  button4;
 
 
 
@@ -138,6 +139,7 @@ extern "C" {
 				 this->btnSubmit = (gcnew System::Windows::Forms::Button());
 				 this->labelStatus = (gcnew System::Windows::Forms::Label());
 				 this->tblPrint = (gcnew System::Windows::Forms::TableLayoutPanel());
+				 this->button4 = (gcnew System::Windows::Forms::Button());
 				 this->cmsPilha->SuspendLayout();
 				 this->cmsLista->SuspendLayout();
 				 this->cmsFila->SuspendLayout();
@@ -147,7 +149,7 @@ extern "C" {
 				 // 
 				 this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 				 this->button1->Location = System::Drawing::Point(4, 4);
-				 this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->button1->Margin = System::Windows::Forms::Padding(4);
 				 this->button1->Name = L"button1";
 				 this->button1->Size = System::Drawing::Size(68, 58);
 				 this->button1->TabIndex = 2;
@@ -161,7 +163,7 @@ extern "C" {
 					 | System::Windows::Forms::AnchorStyles::Right));
 				 this->panel1->BackColor = System::Drawing::SystemColors::WindowFrame;
 				 this->panel1->Location = System::Drawing::Point(4, 65);
-				 this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->panel1->Margin = System::Windows::Forms::Padding(4);
 				 this->panel1->Name = L"panel1";
 				 this->panel1->Size = System::Drawing::Size(1407, 427);
 				 this->panel1->TabIndex = 3;
@@ -170,7 +172,7 @@ extern "C" {
 				 // 
 				 this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 				 this->button2->Location = System::Drawing::Point(80, 4);
-				 this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->button2->Margin = System::Windows::Forms::Padding(4);
 				 this->button2->Name = L"button2";
 				 this->button2->Size = System::Drawing::Size(68, 58);
 				 this->button2->TabIndex = 4;
@@ -181,7 +183,7 @@ extern "C" {
 				 // 
 				 this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 				 this->button3->Location = System::Drawing::Point(156, 4);
-				 this->button3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->button3->Margin = System::Windows::Forms::Padding(4);
 				 this->button3->Name = L"button3";
 				 this->button3->Size = System::Drawing::Size(68, 58);
 				 this->button3->TabIndex = 5;
@@ -314,7 +316,7 @@ extern "C" {
 				 // getInfo
 				 // 
 				 this->getInfo->Location = System::Drawing::Point(325, 18);
-				 this->getInfo->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->getInfo->Margin = System::Windows::Forms::Padding(4);
 				 this->getInfo->Name = L"getInfo";
 				 this->getInfo->Size = System::Drawing::Size(52, 22);
 				 this->getInfo->TabIndex = 6;
@@ -334,7 +336,7 @@ extern "C" {
 				 // btnSubmit
 				 // 
 				 this->btnSubmit->Location = System::Drawing::Point(387, 18);
-				 this->btnSubmit->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->btnSubmit->Margin = System::Windows::Forms::Padding(4);
 				 this->btnSubmit->Name = L"btnSubmit";
 				 this->btnSubmit->Size = System::Drawing::Size(45, 28);
 				 this->btnSubmit->TabIndex = 8;
@@ -362,10 +364,10 @@ extern "C" {
 				 this->tblPrint->BackColor = System::Drawing::SystemColors::Desktop;
 				 this->tblPrint->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::OutsetDouble;
 				 this->tblPrint->ColumnCount = 1;
-				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 819)));
+				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 840)));
 				 this->tblPrint->GrowStyle = System::Windows::Forms::TableLayoutPanelGrowStyle::AddColumns;
 				 this->tblPrint->Location = System::Drawing::Point(483, 17);
-				 this->tblPrint->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->tblPrint->Margin = System::Windows::Forms::Padding(4);
 				 this->tblPrint->Name = L"tblPrint";
 				 this->tblPrint->RowCount = 1;
 				 this->tblPrint->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
@@ -373,11 +375,24 @@ extern "C" {
 				 this->tblPrint->TabIndex = 10;
 				 this->tblPrint->Visible = false;
 				 // 
+				 // button4
+				 // 
+				 this->button4->AllowDrop = true;
+				 this->button4->Location = System::Drawing::Point(1401, 4);
+				 this->button4->Name = L"button4";
+				 this->button4->Size = System::Drawing::Size(10, 10);
+				 this->button4->TabIndex = 11;
+				 this->button4->UseVisualStyleBackColor = true;
+				 this->button4->Visible = false;
+				 this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
+				 this->button4->Move += gcnew System::EventHandler(this, &MyForm::button4_Move);
+				 // 
 				 // MyForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(1417, 507);
+				 this->Controls->Add(this->button4);
 				 this->Controls->Add(this->tblPrint);
 				 this->Controls->Add(this->panel1);
 				 this->Controls->Add(this->labelStatus);
@@ -387,7 +402,7 @@ extern "C" {
 				 this->Controls->Add(this->button3);
 				 this->Controls->Add(this->button2);
 				 this->Controls->Add(this->button1);
-				 this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				 this->Margin = System::Windows::Forms::Padding(4);
 				 this->Name = L"MyForm";
 				 this->Text = L"Criador de Estruturas";
 				 this->cmsPilha->ResumeLayout(false);
@@ -422,6 +437,8 @@ extern "C" {
 		newButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 		newButton->BackgroundImage = Image::FromFile("..\\img\\pilha.png");
 		newButton->ContextMenuStrip = cmsPilha;
+		newButton->Move += gcnew System::EventHandler(this, &Project::MyForm::button4_Move);
+		newButton->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 		newButton->Parent = panel1;
 		newButton->BringToFront();
 	}
@@ -904,10 +921,22 @@ extern "C" {
 		panel1->Controls->Remove(thisButton);
 
 	}
+	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		Control^ thisControl = panel1->GetChildAtPoint(panel1->PointToClient(Cursor->Position));
+
+		if (thisControl != nullptr)
+			_newButton = safe_cast<Button^>(thisControl);
+	};
 
 			 //---------------------------------------------------------------------------------------------------------
 
-	}
+private: System::Void button4_Move(System::Object^  sender, System::EventArgs^  e) {
+
+	if (_newButton != nullptr)
+		_newButton->Location = panel1->PointToClient(Cursor->Position);
+}
+}
 	;
 }
 ;
