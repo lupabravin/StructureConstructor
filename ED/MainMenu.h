@@ -743,7 +743,6 @@ namespace Project {
 			{
 				t = createTree();
 
-				thisButton->Tag = "";
 				insertTree(ID, value, &t, NULL);
 
 				if (firstTree == NULL) {
@@ -1151,10 +1150,8 @@ namespace Project {
 
 		if (firstTree != NULL)
 		{
-			t = searchTree(ID, firstTree);
-			freeTree(&t);
+			firstTree = removeTree(ID, firstTree);
 		}
-
 		panel1->Controls->Remove(thisButton);
 		statusLabel(5);
 	}

@@ -44,37 +44,28 @@ void insertTree(char* ID, int num, Tree** t, Tree* root)
 
 	if (*t == NULL)
 	{
-		*t = (Tree*)malloc(sizeof(Tree)); /* Aloca memória para a estrutura */
-		(*t)->sae = NULL; /* Subárvore à esquerda é NULL */
-		(*t)->sad = NULL; /* Subárvore à direita é NULL */
-		(*t)->num = num; /* Armazena a informação */
+		*t = (Tree*)malloc(sizeof(Tree)); 
+		(*t)->sae = NULL; 
+		(*t)->sad = NULL; 
+		(*t)->num = num; 
 		(*t)->ID = ID;
 		(*t)->root = root;
 		(*t)->nextTree = root->nextTree;
 	}
 	else {
-		if (num < (*t)->num) /* Se o número for menor então vai pra esquerda */
+		if (num < (*t)->num) 
 		{
-			/* Percorre pela subárvore à esquerda */
+
 			insertTree( ID,num, &(*t)->sae, root);
 		}
-		if (num >(*t)->num) /* Se o número for maior então vai pra direita */
+		if (num >(*t)->num) 
 		{
-			/* Percorre pela subárvore à direita */
+
 			insertTree(ID, num, &(*t)->sad, root);
 		}
 	}
 }
-/* Função que verifica se um elemento pertence ou não à árvore */
-int isInTree(Tree* t, int num) {
 
-	if (treeIsEmpty(t)) { /* Se a árvore estiver vazia, então retorna 0 */
-		return 0;
-	}
-
-	/* O operador lógico || interrompe a busca quando o elemento for encontrado */
-	return t->num == num || isInTree(t->sae, num) || isInTree(t->sad, num);
-}
 
 int countTreeElements (Tree *t)
 {
@@ -107,8 +98,8 @@ void removeNode(Tree **ab, int valor)
 				removeNode(&((*ab)->sae), valor);
 			}
 		}
-		else { /* (*ab)->info == valor */
-			if (removeChildNodes(ab) == 0) /* Remove no de grau 2 */
+		else { 
+			if (removeChildNodes(ab) == 0) 
 				changeTree(ab, &((*ab)->sad));
 		}
 	}
@@ -118,7 +109,7 @@ char removeChildNodes(Tree **ab)
 {
 	Tree *aux;
 
-	if ((*ab)->sae == NULL) { /* (*ab) eh folha ou tem unico filho */
+	if ((*ab)->sae == NULL) { 
 		aux = (*ab);
 
 		if (aux == aux->root)
@@ -131,7 +122,7 @@ char removeChildNodes(Tree **ab)
 		aux = NULL;
 	}
 	else {
-		if ((*ab)->sad == NULL) { /* (*ab) eh folha ou tem unico filho */
+		if ((*ab)->sad == NULL) {
 			aux = (*ab);
 
 			if (aux == aux->root)
@@ -177,19 +168,17 @@ int searchTreeIndex(char* ID, Tree* x)
 	return count;
 }
 
-/* Substitui o valor de um no, cujo valor esta sendo removido, pelo
-valor do menor sucessor deste no, e remove o no do menor
-sucessor. Auxilia RemoveValor. */
+
 
 void changeTree(Tree **ab, Tree **maisesq)
 {
 	Tree *aux;
 
 	if ((*maisesq)->sae == NULL) {
-		(*ab)->num = (*maisesq)->num; /* substitui valor */
-		removeChildNodes(maisesq); /* remove no */
+		(*ab)->num = (*maisesq)->num; 
+		removeChildNodes(maisesq); 
 	}
-	else { /* busca sucessor */
+	else {
 		changeTree(ab, &((*maisesq)->sae));
 	}
 }
@@ -234,17 +223,17 @@ Tree* removeTree(char* ID, Tree* treeCollection)
 		p = p->nextTree;
 	}
 
-	if (last == NULL && p->nextTree != NULL) { // caso seja o primeiro e tenha próximo
+	if (last == NULL && p->nextTree != NULL) { 
 		aux = p->nextTree;
 		freeTree(&p);
 		p = NULL;
 		return aux;
 	}
 
-	else if (last == NULL && p->nextTree == NULL) // caso seja o único elemento
+	else if (last == NULL && p->nextTree == NULL) 
 		return NULL;
 
-	else if (last != NULL && p->nextTree != NULL) // caso esteja no meio da lista
+	else if (last != NULL && p->nextTree != NULL) 
 	{
 		last->nextTree = p->nextTree;
 		freeTree(&p);
@@ -252,7 +241,7 @@ Tree* removeTree(char* ID, Tree* treeCollection)
 		return treeCollection;
 	}
 
-	else				 // caso seja o último
+	else			
 	{
 		last->nextTree = NULL;
 		freeTree(&p);
@@ -301,24 +290,6 @@ int treeHeight(Tree *ab)
 		return(0);
 }
 
-
-
-
-/* Função que mostra a informação da árvore */
-void showTree(Tree* t)
-{
-	/* Essa função imprime os elementos de forma recursiva */
-
-	printf("<"); /* notação para organizar na hora de mostrar os elementos */
-	if (!treeIsEmpty(t)) /* se a árvore não for vazia... */
-	{
-		/* Mostra os elementos em pré-ordem */
-		printf("%d ", t->num); /* mostra a raiz */
-		showTree(t->sae); /* mostra a sae (subárvore à esquerda) */
-		showTree(t->sad); /* mostra a sad (subárvore à direita) */
-	}
-	printf(">"); /* notação para organizar na hora de mostrar os elementos */
-}
 
 void printTreeStatus(Tree *ab, int h, int height)
 {

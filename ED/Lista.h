@@ -20,7 +20,7 @@ extern "C" {
 
 	Lista* lastElement(Lista* p);
 
-	Lista* updateListCollection(char* ID, Lista* l, Lista* firstList);
+	//Lista* updateListCollection(char* ID, Lista* l, Lista* firstList);
 
 	Lista* searchList(char* ID, Lista* x);
 
