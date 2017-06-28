@@ -3,21 +3,24 @@
 #include <string>
 namespace Project {
 
-extern "C" {
-	#include "Pilha.h"
-	#include "Lista.h"
-	#include "Fila.h"
-	#include <string.h>
-	#include <stdlib.h>
+	extern "C" {
+#include "Pilha.h"
+#include "Lista.h"
+#include "Fila.h"
+#include "Tree.h"
+#include <string.h>
+#include <stdlib.h>
 
-	int _countPile = 1;
-	int _countList = 1;
-	int _countFila = 1;
-	int _submit;
-	Pilha * firstPile;
-	Lista * firstList;
-	Fila * firstFila;
-}
+		int _countPile = 1;
+		int _countList = 1;
+		int _countFila = 1;
+		int  _countTree = 1;
+		int _submit;
+		Pilha * firstPile;
+		Lista * firstList;
+		Fila * firstFila;
+		Tree * firstTree;
+	}
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -39,6 +42,7 @@ extern "C" {
 			button1->BackgroundImage = Image::FromFile("..\\img\\pilha.png");
 			button2->BackgroundImage = Image::FromFile("..\\img\\lista.png");
 			button3->BackgroundImage = Image::FromFile("..\\img\\fila.png");
+			button4->BackgroundImage = Image::FromFile("..\\img\\arvore.png");
 			//
 			//TODO: Add the constructor code here
 			//
@@ -61,8 +65,6 @@ extern "C" {
 	private: System::Windows::Forms::Panel^  panel1;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
-	private: int _currentX = 0;
-	private: int _currentY = 0;
 	private: System::Windows::Forms::Button^ currentControl;
 	private: System::Windows::Forms::ContextMenuStrip^  cmsPilha;
 	private: System::Windows::Forms::ContextMenuStrip^  cmsLista;
@@ -97,7 +99,49 @@ extern "C" {
 	private: System::Windows::Forms::ToolStripMenuItem^  removerToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  verStatusToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^  excluirFilaToolStripMenuItem;
+	private: System::Windows::Forms::RichTextBox^  TreeBox;
 	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::ContextMenuStrip^  cmsTree;
+	private: System::Windows::Forms::ToolStripMenuItem^  AddNode;
+	private: System::Windows::Forms::ToolStripMenuItem^  RemoveNode;
+	private: System::Windows::Forms::ToolStripMenuItem^  printTree;
+	private: System::Windows::Forms::ToolStripMenuItem^  deleteTree;
+
+
+
+
+	private: System::Windows::Forms::ToolStripMenuItem^  alterarNóToolStripMenuItem;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -139,19 +183,26 @@ extern "C" {
 				 this->btnSubmit = (gcnew System::Windows::Forms::Button());
 				 this->labelStatus = (gcnew System::Windows::Forms::Label());
 				 this->tblPrint = (gcnew System::Windows::Forms::TableLayoutPanel());
+				 this->TreeBox = (gcnew System::Windows::Forms::RichTextBox());
 				 this->button4 = (gcnew System::Windows::Forms::Button());
+				 this->cmsTree = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
+				 this->AddNode = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->alterarNóToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->RemoveNode = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->printTree = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->deleteTree = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->cmsPilha->SuspendLayout();
 				 this->cmsLista->SuspendLayout();
 				 this->cmsFila->SuspendLayout();
+				 this->cmsTree->SuspendLayout();
 				 this->SuspendLayout();
 				 // 
 				 // button1
 				 // 
 				 this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-				 this->button1->Location = System::Drawing::Point(4, 4);
-				 this->button1->Margin = System::Windows::Forms::Padding(4);
+				 this->button1->Location = System::Drawing::Point(3, 3);
 				 this->button1->Name = L"button1";
-				 this->button1->Size = System::Drawing::Size(68, 58);
+				 this->button1->Size = System::Drawing::Size(51, 47);
 				 this->button1->TabIndex = 2;
 				 this->button1->UseVisualStyleBackColor = true;
 				 this->button1->Click += gcnew System::EventHandler(this, &MyForm::btnPilha_Click);
@@ -162,19 +213,17 @@ extern "C" {
 					 | System::Windows::Forms::AnchorStyles::Left)
 					 | System::Windows::Forms::AnchorStyles::Right));
 				 this->panel1->BackColor = System::Drawing::SystemColors::WindowFrame;
-				 this->panel1->Location = System::Drawing::Point(4, 65);
-				 this->panel1->Margin = System::Windows::Forms::Padding(4);
+				 this->panel1->Location = System::Drawing::Point(3, 53);
 				 this->panel1->Name = L"panel1";
-				 this->panel1->Size = System::Drawing::Size(1407, 427);
+				 this->panel1->Size = System::Drawing::Size(693, 520);
 				 this->panel1->TabIndex = 3;
 				 // 
 				 // button2
 				 // 
 				 this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-				 this->button2->Location = System::Drawing::Point(80, 4);
-				 this->button2->Margin = System::Windows::Forms::Padding(4);
+				 this->button2->Location = System::Drawing::Point(60, 3);
 				 this->button2->Name = L"button2";
-				 this->button2->Size = System::Drawing::Size(68, 58);
+				 this->button2->Size = System::Drawing::Size(51, 47);
 				 this->button2->TabIndex = 4;
 				 this->button2->UseVisualStyleBackColor = true;
 				 this->button2->Click += gcnew System::EventHandler(this, &MyForm::btnLista_Click);
@@ -182,10 +231,9 @@ extern "C" {
 				 // button3
 				 // 
 				 this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-				 this->button3->Location = System::Drawing::Point(156, 4);
-				 this->button3->Margin = System::Windows::Forms::Padding(4);
+				 this->button3->Location = System::Drawing::Point(117, 3);
 				 this->button3->Name = L"button3";
-				 this->button3->Size = System::Drawing::Size(68, 58);
+				 this->button3->Size = System::Drawing::Size(51, 47);
 				 this->button3->TabIndex = 5;
 				 this->button3->UseVisualStyleBackColor = true;
 				 this->button3->Click += gcnew System::EventHandler(this, &MyForm::btnFila_Click);
@@ -198,34 +246,34 @@ extern "C" {
 						 this->verStatusToolStripMenuItem, this->excluirEstruturaToolStripMenuItem
 				 });
 				 this->cmsPilha->Name = L"cmsPilha";
-				 this->cmsPilha->Size = System::Drawing::Size(260, 108);
+				 this->cmsPilha->Size = System::Drawing::Size(216, 92);
 				 this->cmsPilha->Opened += gcnew System::EventHandler(this, &MyForm::cmsPilha_Opened);
 				 // 
 				 // pushPilha
 				 // 
 				 this->pushPilha->Name = L"pushPilha";
-				 this->pushPilha->Size = System::Drawing::Size(259, 26);
+				 this->pushPilha->Size = System::Drawing::Size(215, 22);
 				 this->pushPilha->Text = L"Adicionar Elemento (Push)";
 				 this->pushPilha->Click += gcnew System::EventHandler(this, &MyForm::pushPilha_Click);
 				 // 
 				 // removerElementoPopToolStripMenuItem
 				 // 
 				 this->removerElementoPopToolStripMenuItem->Name = L"removerElementoPopToolStripMenuItem";
-				 this->removerElementoPopToolStripMenuItem->Size = System::Drawing::Size(259, 26);
+				 this->removerElementoPopToolStripMenuItem->Size = System::Drawing::Size(215, 22);
 				 this->removerElementoPopToolStripMenuItem->Text = L"Remover Elemento (Pop)";
 				 this->removerElementoPopToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::popPilha_Click);
 				 // 
 				 // verStatusToolStripMenuItem
 				 // 
 				 this->verStatusToolStripMenuItem->Name = L"verStatusToolStripMenuItem";
-				 this->verStatusToolStripMenuItem->Size = System::Drawing::Size(259, 26);
+				 this->verStatusToolStripMenuItem->Size = System::Drawing::Size(215, 22);
 				 this->verStatusToolStripMenuItem->Text = L"Ver Status";
 				 this->verStatusToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::printPile_Click);
 				 // 
 				 // excluirEstruturaToolStripMenuItem
 				 // 
 				 this->excluirEstruturaToolStripMenuItem->Name = L"excluirEstruturaToolStripMenuItem";
-				 this->excluirEstruturaToolStripMenuItem->Size = System::Drawing::Size(259, 26);
+				 this->excluirEstruturaToolStripMenuItem->Size = System::Drawing::Size(215, 22);
 				 this->excluirEstruturaToolStripMenuItem->Text = L"Excluir Pilha";
 				 this->excluirEstruturaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::excluirPilha_Click);
 				 // 
@@ -237,40 +285,40 @@ extern "C" {
 						 this->removerElementoToolStripMenuItem, this->alterarElementoToolStripMenuItem, this->verStatusToolStripMenuItem1, this->excluirListaToolStripMenuItem
 				 });
 				 this->cmsLista->Name = L"contextMenuStrip1";
-				 this->cmsLista->Size = System::Drawing::Size(216, 134);
+				 this->cmsLista->Size = System::Drawing::Size(179, 114);
 				 this->cmsLista->Opened += gcnew System::EventHandler(this, &MyForm::cmsLista_Opened);
 				 // 
 				 // adicionarElementoToolStripMenuItem
 				 // 
 				 this->adicionarElementoToolStripMenuItem->Name = L"adicionarElementoToolStripMenuItem";
-				 this->adicionarElementoToolStripMenuItem->Size = System::Drawing::Size(215, 26);
+				 this->adicionarElementoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->adicionarElementoToolStripMenuItem->Text = L"Adicionar Elemento";
 				 this->adicionarElementoToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::addListElement_Click);
 				 // 
 				 // removerElementoToolStripMenuItem
 				 // 
 				 this->removerElementoToolStripMenuItem->Name = L"removerElementoToolStripMenuItem";
-				 this->removerElementoToolStripMenuItem->Size = System::Drawing::Size(215, 26);
+				 this->removerElementoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->removerElementoToolStripMenuItem->Text = L"Remover Elemento";
 				 this->removerElementoToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::removeListElement_Click);
 				 // 
 				 // alterarElementoToolStripMenuItem
 				 // 
 				 this->alterarElementoToolStripMenuItem->Name = L"alterarElementoToolStripMenuItem";
-				 this->alterarElementoToolStripMenuItem->Size = System::Drawing::Size(215, 26);
+				 this->alterarElementoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->alterarElementoToolStripMenuItem->Text = L"Alterar Posições";
 				 // 
 				 // verStatusToolStripMenuItem1
 				 // 
 				 this->verStatusToolStripMenuItem1->Name = L"verStatusToolStripMenuItem1";
-				 this->verStatusToolStripMenuItem1->Size = System::Drawing::Size(215, 26);
+				 this->verStatusToolStripMenuItem1->Size = System::Drawing::Size(178, 22);
 				 this->verStatusToolStripMenuItem1->Text = L"Ver Status";
 				 this->verStatusToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::printList_Click);
 				 // 
 				 // excluirListaToolStripMenuItem
 				 // 
 				 this->excluirListaToolStripMenuItem->Name = L"excluirListaToolStripMenuItem";
-				 this->excluirListaToolStripMenuItem->Size = System::Drawing::Size(215, 26);
+				 this->excluirListaToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->excluirListaToolStripMenuItem->Text = L"Excluir Lista";
 				 this->excluirListaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::removeList_Click);
 				 // 
@@ -282,63 +330,60 @@ extern "C" {
 						 this->removerToolStripMenuItem, this->verStatusToolStripMenuItem2, this->excluirFilaToolStripMenuItem
 				 });
 				 this->cmsFila->Name = L"contextMenuStrip1";
-				 this->cmsFila->Size = System::Drawing::Size(216, 108);
+				 this->cmsFila->Size = System::Drawing::Size(179, 92);
 				 this->cmsFila->Opened += gcnew System::EventHandler(this, &MyForm::cmsFila_Opened);
 				 // 
 				 // adicionarToolStripMenuItem
 				 // 
 				 this->adicionarToolStripMenuItem->Name = L"adicionarToolStripMenuItem";
-				 this->adicionarToolStripMenuItem->Size = System::Drawing::Size(215, 26);
+				 this->adicionarToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->adicionarToolStripMenuItem->Text = L"Adicionar Elemento";
 				 this->adicionarToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::pushFila_Click);
 				 // 
 				 // removerToolStripMenuItem
 				 // 
 				 this->removerToolStripMenuItem->Name = L"removerToolStripMenuItem";
-				 this->removerToolStripMenuItem->Size = System::Drawing::Size(215, 26);
+				 this->removerToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->removerToolStripMenuItem->Text = L"Remover Elemento";
 				 this->removerToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::popFila_Click);
 				 // 
 				 // verStatusToolStripMenuItem2
 				 // 
 				 this->verStatusToolStripMenuItem2->Name = L"verStatusToolStripMenuItem2";
-				 this->verStatusToolStripMenuItem2->Size = System::Drawing::Size(215, 26);
+				 this->verStatusToolStripMenuItem2->Size = System::Drawing::Size(178, 22);
 				 this->verStatusToolStripMenuItem2->Text = L"Ver Status";
 				 this->verStatusToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::printfila_Click);
 				 // 
 				 // excluirFilaToolStripMenuItem
 				 // 
 				 this->excluirFilaToolStripMenuItem->Name = L"excluirFilaToolStripMenuItem";
-				 this->excluirFilaToolStripMenuItem->Size = System::Drawing::Size(215, 26);
+				 this->excluirFilaToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 				 this->excluirFilaToolStripMenuItem->Text = L"Excluir Fila";
 				 this->excluirFilaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::excluirFila_Click);
 				 // 
 				 // getInfo
 				 // 
-				 this->getInfo->Location = System::Drawing::Point(325, 18);
-				 this->getInfo->Margin = System::Windows::Forms::Padding(4);
+				 this->getInfo->Location = System::Drawing::Point(339, 6);
 				 this->getInfo->Name = L"getInfo";
-				 this->getInfo->Size = System::Drawing::Size(52, 22);
+				 this->getInfo->Size = System::Drawing::Size(40, 20);
 				 this->getInfo->TabIndex = 6;
 				 this->getInfo->Visible = false;
 				 // 
 				 // Request
 				 // 
 				 this->Request->AutoSize = true;
-				 this->Request->Location = System::Drawing::Point(232, 25);
-				 this->Request->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->Request->Location = System::Drawing::Point(251, 9);
 				 this->Request->Name = L"Request";
-				 this->Request->Size = System::Drawing::Size(46, 17);
+				 this->Request->Size = System::Drawing::Size(35, 13);
 				 this->Request->TabIndex = 7;
 				 this->Request->Text = L"label2";
 				 this->Request->Visible = false;
 				 // 
 				 // btnSubmit
 				 // 
-				 this->btnSubmit->Location = System::Drawing::Point(387, 18);
-				 this->btnSubmit->Margin = System::Windows::Forms::Padding(4);
+				 this->btnSubmit->Location = System::Drawing::Point(385, 3);
 				 this->btnSubmit->Name = L"btnSubmit";
-				 this->btnSubmit->Size = System::Drawing::Size(45, 28);
+				 this->btnSubmit->Size = System::Drawing::Size(34, 23);
 				 this->btnSubmit->TabIndex = 8;
 				 this->btnSubmit->Text = L"OK";
 				 this->btnSubmit->UseVisualStyleBackColor = true;
@@ -351,10 +396,9 @@ extern "C" {
 				 this->labelStatus->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
 				 this->labelStatus->ForeColor = System::Drawing::SystemColors::ControlText;
-				 this->labelStatus->Location = System::Drawing::Point(232, 25);
-				 this->labelStatus->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				 this->labelStatus->Location = System::Drawing::Point(249, 9);
 				 this->labelStatus->Name = L"labelStatus";
-				 this->labelStatus->Size = System::Drawing::Size(52, 17);
+				 this->labelStatus->Size = System::Drawing::Size(41, 13);
 				 this->labelStatus->TabIndex = 9;
 				 this->labelStatus->Text = L"label1";
 				 this->labelStatus->Visible = false;
@@ -364,35 +408,91 @@ extern "C" {
 				 this->tblPrint->BackColor = System::Drawing::SystemColors::Desktop;
 				 this->tblPrint->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::OutsetDouble;
 				 this->tblPrint->ColumnCount = 1;
-				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 840)));
+				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 772)));
 				 this->tblPrint->GrowStyle = System::Windows::Forms::TableLayoutPanelGrowStyle::AddColumns;
-				 this->tblPrint->Location = System::Drawing::Point(483, 17);
-				 this->tblPrint->Margin = System::Windows::Forms::Padding(4);
+				 this->tblPrint->Location = System::Drawing::Point(242, 29);
 				 this->tblPrint->Name = L"tblPrint";
 				 this->tblPrint->RowCount = 1;
 				 this->tblPrint->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
-				 this->tblPrint->Size = System::Drawing::Size(771, 26);
+				 this->tblPrint->Size = System::Drawing::Size(757, 21);
 				 this->tblPrint->TabIndex = 10;
 				 this->tblPrint->Visible = false;
 				 // 
+				 // TreeBox
+				 // 
+				 this->TreeBox->AcceptsTab = true;
+				 this->TreeBox->BackColor = System::Drawing::SystemColors::ControlLight;
+				 this->TreeBox->DetectUrls = false;
+				 this->TreeBox->Location = System::Drawing::Point(696, 53);
+				 this->TreeBox->Name = L"TreeBox";
+				 this->TreeBox->ReadOnly = true;
+				 this->TreeBox->Size = System::Drawing::Size(318, 519);
+				 this->TreeBox->TabIndex = 11;
+				 this->TreeBox->TabStop = false;
+				 this->TreeBox->Text = L"";
+				 // 
 				 // button4
 				 // 
-				 this->button4->AllowDrop = true;
-				 this->button4->Location = System::Drawing::Point(1401, 4);
+				 this->button4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+				 this->button4->Location = System::Drawing::Point(174, 3);
 				 this->button4->Name = L"button4";
-				 this->button4->Size = System::Drawing::Size(10, 10);
-				 this->button4->TabIndex = 11;
+				 this->button4->Size = System::Drawing::Size(51, 47);
+				 this->button4->TabIndex = 12;
 				 this->button4->UseVisualStyleBackColor = true;
-				 this->button4->Visible = false;
-				 this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
-				 this->button4->Move += gcnew System::EventHandler(this, &MyForm::button4_Move);
+				 this->button4->Click += gcnew System::EventHandler(this, &MyForm::btnTree_Click);
+				 // 
+				 // cmsTree
+				 // 
+				 this->cmsTree->ImageScalingSize = System::Drawing::Size(20, 20);
+				 this->cmsTree->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+					 this->AddNode, this->alterarNóToolStripMenuItem,
+						 this->RemoveNode, this->printTree, this->deleteTree
+				 });
+				 this->cmsTree->Name = L"contextMenuStrip1";
+				 this->cmsTree->Size = System::Drawing::Size(153, 136);
+				 this->cmsTree->Opened += gcnew System::EventHandler(this, &MyForm::cmsTree_Opened);
+				 // 
+				 // AddNode
+				 // 
+				 this->AddNode->Name = L"AddNode";
+				 this->AddNode->Size = System::Drawing::Size(152, 22);
+				 this->AddNode->Text = L"Adicionar Nó";
+				 this->AddNode->Click += gcnew System::EventHandler(this, &MyForm::AddNode_Click);
+				 // 
+				 // alterarNóToolStripMenuItem
+				 // 
+				 this->alterarNóToolStripMenuItem->Name = L"alterarNóToolStripMenuItem";
+				 this->alterarNóToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+				 this->alterarNóToolStripMenuItem->Text = L"Alterar Nó";
+				 // 
+				 // RemoveNode
+				 // 
+				 this->RemoveNode->Name = L"RemoveNode";
+				 this->RemoveNode->Size = System::Drawing::Size(152, 22);
+				 this->RemoveNode->Text = L"Remover Nó";
+				 this->RemoveNode->Click += gcnew System::EventHandler(this, &MyForm::RemoveNode_Click);
+				 // 
+				 // printTree
+				 // 
+				 this->printTree->Name = L"printTree";
+				 this->printTree->Size = System::Drawing::Size(152, 22);
+				 this->printTree->Text = L"Ver Status";
+				 this->printTree->Click += gcnew System::EventHandler(this, &MyForm::printTree_Click);
+				 // 
+				 // deleteTree
+				 // 
+				 this->deleteTree->Name = L"deleteTree";
+				 this->deleteTree->Size = System::Drawing::Size(152, 22);
+				 this->deleteTree->Text = L"Excluir Árvore";
+				 this->deleteTree->Click += gcnew System::EventHandler(this, &MyForm::deleteTree_Click);
 				 // 
 				 // MyForm
 				 // 
-				 this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-				 this->ClientSize = System::Drawing::Size(1417, 507);
+				 this->ClientSize = System::Drawing::Size(1011, 585);
 				 this->Controls->Add(this->button4);
+				 this->Controls->Add(this->TreeBox);
 				 this->Controls->Add(this->tblPrint);
 				 this->Controls->Add(this->panel1);
 				 this->Controls->Add(this->labelStatus);
@@ -402,12 +502,12 @@ extern "C" {
 				 this->Controls->Add(this->button3);
 				 this->Controls->Add(this->button2);
 				 this->Controls->Add(this->button1);
-				 this->Margin = System::Windows::Forms::Padding(4);
 				 this->Name = L"MyForm";
 				 this->Text = L"Criador de Estruturas";
 				 this->cmsPilha->ResumeLayout(false);
 				 this->cmsLista->ResumeLayout(false);
 				 this->cmsFila->ResumeLayout(false);
+				 this->cmsTree->ResumeLayout(false);
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
@@ -416,16 +516,8 @@ extern "C" {
 
 	private: System::Void btnPilha_Click(System::Object^  sender, System::EventArgs^  e) {
 		Button^ newButton = gcnew System::Windows::Forms::Button();
+		newButton->Location = searchValidLocation();
 		this->panel1->Controls->Add(newButton);
-		newButton->Location = System::Drawing::Point(_currentX, _currentY);
-
-		if (_currentX < 1000)
-			_currentX += 50;
-		else
-		{
-			_currentX = 0;
-			_currentY += 50;
-		}
 
 		newButton->Name = "P" + _countPile;
 		_countPile++;
@@ -437,8 +529,6 @@ extern "C" {
 		newButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 		newButton->BackgroundImage = Image::FromFile("..\\img\\pilha.png");
 		newButton->ContextMenuStrip = cmsPilha;
-		newButton->Move += gcnew System::EventHandler(this, &Project::MyForm::button4_Move);
-		newButton->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 		newButton->Parent = panel1;
 		newButton->BringToFront();
 	}
@@ -446,16 +536,8 @@ extern "C" {
 	private: System::Void btnLista_Click(System::Object^ sender, System::EventArgs^  e) {
 
 		Button^ newButton = gcnew System::Windows::Forms::Button();
+		newButton->Location = searchValidLocation();
 		this->panel1->Controls->Add(newButton);
-		newButton->Location = System::Drawing::Point(_currentX, _currentY);
-
-		if (_currentX < 1000)
-			_currentX += 50;
-		else
-		{
-			_currentX = 0;
-			_currentY += 50;
-		}
 
 		newButton->Name = "L" + _countList;
 		_countList++;
@@ -474,16 +556,8 @@ extern "C" {
 	private: System::Void btnFila_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		Button^ newButton = gcnew System::Windows::Forms::Button();
+		newButton->Location = searchValidLocation();
 		this->panel1->Controls->Add(newButton);
-		newButton->Location = System::Drawing::Point(_currentX, _currentY);
-
-		if (_currentX < 1000)
-			_currentX += 50;
-		else
-		{
-			_currentX = 0;
-			_currentY += 50;
-		}
 
 		newButton->Name = "F" + _countFila;
 		_countFila++;
@@ -499,13 +573,31 @@ extern "C" {
 		newButton->BringToFront();
 	}
 
+	private: System::Void btnTree_Click(System::Object^  sender, System::EventArgs^  e) {
+		Button^ newButton = gcnew System::Windows::Forms::Button();
+		newButton->Location = searchValidLocation();
+		this->panel1->Controls->Add(newButton);
+		newButton->Name = "T" + _countTree;
+		_countPile++;
+		newButton->Visible = true;
+		newButton->Tag = "NULL";
+		newButton->Text = "0";
+		newButton->ForeColor = System::Drawing::Color::White;
+		newButton->Size = System::Drawing::Size(50, 50);
+		newButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+		newButton->BackgroundImage = Image::FromFile("..\\img\\arvore.png");
+		newButton->ContextMenuStrip = cmsTree;
+		newButton->Parent = panel1;
+		newButton->BringToFront();
+	}
+
 	private: System::Void btnSubmit_Click(System::Object^  sender, System::EventArgs^  e) {
 		Button^ thisButton = _newButton;
 		Pilha* p;
 		Fila* f;
 		Lista* l;
 		Lista* currentList;
-
+		Tree * t;
 
 		Int32 count;
 		std::string myString = toStandardString(getInfo->Text);
@@ -646,7 +738,70 @@ extern "C" {
 			thisButton->Text = gcnew String(std::to_string(count).c_str());
 			statusLabel(0);
 			break;
+		case 6: //Tree Add			
+			if (thisButton->Tag->Equals("NULL"))
+			{
+				t = createTree();
 
+				thisButton->Tag = "";
+				insertTree(ID, value, &t, NULL);
+
+				if (firstTree == NULL) {
+					firstTree = t;
+					firstTree->root = t;
+					firstTree->nextTree = NULL;
+				}
+
+				else
+				{
+					Tree * aux = firstTree;
+
+					while (aux->nextTree != NULL)
+						aux = aux->nextTree;
+
+					aux->nextTree = t->root;
+					aux->nextTree->nextTree = NULL;
+				}
+				count = 1;
+			}
+
+			else {
+				t = searchTree(ID, firstTree);
+				insertTree(ID, value, &t->root, t->root);
+				count = countTreeElements(t->root);
+			}
+
+			thisButton->Text = gcnew String(std::to_string(count).c_str());
+			statusLabel(0);
+			break;
+		case 7: //Remover Nó
+
+			if (thisButton->Tag->Equals("NULL")) return;
+			firstTree = reorderTree(firstTree);
+			t = searchTree(ID, firstTree)->root;
+			int index = searchTreeIndex(ID, firstTree->root);
+
+			if (countTreeElements(t) == 1)
+			{
+				firstTree = removeTree(ID, firstTree);
+				t = NULL;
+				thisButton->Tag = "NULL";
+			}
+
+			else
+				removeNode(&t, value);
+
+			firstTree = changeIndex(firstTree, index, t);
+
+			if (firstTree != NULL)
+				t = searchTree(ID, firstTree);
+			else
+				t = NULL;
+
+			Int32 count = countTreeElements(t);
+			thisButton->Text = gcnew String(std::to_string(count).c_str());
+			statusLabel(1);
+			break;
 		}
 
 	}
@@ -687,6 +842,14 @@ extern "C" {
 			getInfo->Visible = false;
 			btnSubmit->Visible = false;
 			break;
+		case 5: //Structure Removed
+			labelStatus->Text = "Estrutura removida com sucesso!";
+			labelStatus->ForeColor = Color::DarkGreen;
+			labelStatus->Visible = true;
+			Request->Visible = false;
+			getInfo->Visible = false;
+			btnSubmit->Visible = false;
+			break;
 		}
 
 	}
@@ -696,6 +859,14 @@ extern "C" {
 		_newCms = safe_cast<System::Windows::Forms::ContextMenuStrip^>(sender);
 		//Control^ thisControl = panel1->GetChildAtPoint(_newCms->Location);
 		Control^ thisControl = panel1->GetChildAtPoint(panel1->PointToClient(cmsPilha->Location));
+		_newButton = safe_cast<Button^>(thisControl);
+	}
+
+	private: System::Void cmsTree_Opened(System::Object^  sender, System::EventArgs^  e) {
+
+		_newCms = safe_cast<System::Windows::Forms::ContextMenuStrip^>(sender);
+		//Control^ thisControl = panel1->GetChildAtPoint(_newCms->Location);
+		Control^ thisControl = panel1->GetChildAtPoint(panel1->PointToClient(cmsTree->Location));
 		_newButton = safe_cast<Button^>(thisControl);
 	}
 
@@ -770,7 +941,7 @@ extern "C" {
 
 		firstPile = removePile(ID, firstPile);
 		panel1->Controls->Remove(thisButton);
-
+		statusLabel(5);
 	}
 
 			 //---------------------------------------------------------------------------------------------------------
@@ -782,6 +953,7 @@ extern "C" {
 		Control^ thisControl = panel1->GetChildAtPoint(panel1->PointToClient(cmsLista->Location));
 		_newButton = safe_cast<Button^>(thisControl);
 	}
+
 	private: System::Void addListElement_Click(System::Object^  sender, System::EventArgs^  e) {
 		Request->Text = "Insira o valor:";
 		Request->Visible = true;
@@ -840,6 +1012,7 @@ extern "C" {
 
 		firstList = removeList(ID, firstList);
 		panel1->Controls->Remove(thisButton);
+		statusLabel(5);
 	}
 
 			 //------------------------------------------------------------------------------------------------------------------------
@@ -870,8 +1043,7 @@ extern "C" {
 
 		if (thisButton->Tag->Equals("NULL")) return;
 		firstFila = reorder(firstFila);
-		teste = firstFila;
-		f = searchfila(ID, firstFila);
+		f = searchfila(ID, firstFila)->top;
 
 		if (countfilaElements(f) == 1)
 		{
@@ -893,16 +1065,22 @@ extern "C" {
 		Fila* f;
 		std::string str = toStandardString(thisButton->Name);
 		char *ID = strdup(str.c_str());
+		Label^ element = gcnew System::Windows::Forms::Label();
+		element->ForeColor = Color::AntiqueWhite;
+		tblPrint->Controls->Clear();
+		tblPrint->Visible = true;
+		tblPrint->Controls->Add(element);
 
-		if (thisButton->Tag->Equals("NULL")) return;
+
+		if (thisButton->Tag->Equals("NULL"))
+		{
+			element->Text = "Topo -> ";
+			return;
+		}
 
 		f = searchfila(ID, firstFila)->top;
 		Int32 count = countfilaElements(f);
-		tblPrint->Controls->Clear();
-		tblPrint->Visible = true;
-		Label^ element = gcnew System::Windows::Forms::Label();
-		tblPrint->Controls->Add(element);
-		element->ForeColor = Color::AntiqueWhite;
+
 
 		for (int i = 0; i < count; i++)
 		{
@@ -911,6 +1089,7 @@ extern "C" {
 
 		element->Text = "Topo -> " + element->Text;
 	}
+
 	private: System::Void excluirFila_Click(System::Object^  sender, System::EventArgs^  e) {
 		Button^ thisButton = _newButton;
 		Fila* p;
@@ -919,24 +1098,90 @@ extern "C" {
 
 		firstFila = removeFila(ID, firstFila);
 		panel1->Controls->Remove(thisButton);
+		statusLabel(5);
 
 	}
-	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		Control^ thisControl = panel1->GetChildAtPoint(panel1->PointToClient(Cursor->Position));
+	private: System::Drawing::Point searchValidLocation() {
+		bool found = false;
+		Point p = Point(0, 0);
 
-		if (thisControl != nullptr)
-			_newButton = safe_cast<Button^>(thisControl);
+		while (!found)
+		{
+			Control^ thisControl = panel1->GetChildAtPoint(p);
+
+			if (thisControl != nullptr)
+			{
+				if (p.X < 690)
+					p.X += 50;
+				else
+				{
+					p.X = 0;
+					p.Y += 50;
+				}
+
+			}
+			else
+				found = true;
+		}
+
+		return p;
 	};
+	private: System::Void AddNode_Click(System::Object^  sender, System::EventArgs^  e) {
+		Request->Text = "Insira o valor:";
+		Request->Visible = true;
+		getInfo->Visible = true;
+		btnSubmit->Visible = true;
+		_submit = 6;
+		labelStatus->Visible = false;
+	}
+	private: System::Void RemoveNode_Click(System::Object^  sender, System::EventArgs^  e) {
+		Request->Text = "Valor:";
+		Request->Visible = true;
+		getInfo->Visible = true;
+		btnSubmit->Visible = true;
+		_submit = 7;
+		labelStatus->Visible = false;
+	}
+	private: System::Void deleteTree_Click(System::Object^  sender, System::EventArgs^  e) {
+		Button^ thisButton = _newButton;
+		Tree* t;
+		std::string str = toStandardString(thisButton->Name);
+		char *ID = strdup(str.c_str());
 
-			 //---------------------------------------------------------------------------------------------------------
+		if (firstTree != NULL)
+		{
+			t = searchTree(ID, firstTree);
+			freeTree(&t);
+		}
 
-private: System::Void button4_Move(System::Object^  sender, System::EventArgs^  e) {
+		panel1->Controls->Remove(thisButton);
+		statusLabel(5);
+	}
+	private: System::Void printTree_Click(System::Object^  sender, System::EventArgs^  e) {
+		Button^ thisButton = _newButton;
+		Tree* t;
+		std::string str = toStandardString(thisButton->Name);
+		String^ text = "Árvore Vazia!";
+		char *ID = strdup(str.c_str());
+		char * printResult;
 
-	if (_newButton != nullptr)
-		_newButton->Location = panel1->PointToClient(Cursor->Position);
-}
-}
-	;
+		if (firstTree != NULL)
+		{
+			t = searchTree(ID, firstTree);
+			t->printStatus[0] = '\0';
+			int height = treeHeight(t);
+
+			printTreeStatus(t, 0, height);
+
+			std::string stdtext = std::string(t->printStatus);
+			text = gcnew String(stdtext.c_str());
+
+		}
+
+		TreeBox->Text = text;
+	}
+
+	};
 }
 ;

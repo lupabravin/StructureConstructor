@@ -158,6 +158,8 @@ Fila * reorder(Fila * filaCollection)
 	Fila * aux = filaCollection;
 	Fila * last;
 
+	if (filaCollection == NULL) return NULL;
+
 	if (filaCollection->nextfila == NULL)
 	{
 		filaCollection = filaCollection->top;
@@ -185,7 +187,7 @@ Fila* retirar(char* ID, Fila* filaCollection)
 	lastElement->prev->prox = NULL;
 	currentFila->bot = lastElement->prev;
 	free(lastElement);
-	lastElement == NULL;
+	lastElement = NULL;
 
 	return currentFila;
 };
