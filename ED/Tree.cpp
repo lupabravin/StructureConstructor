@@ -67,10 +67,13 @@ void insertTree(char* ID, int num, Tree** t, Tree* root)
 }
 
 
-int countTreeElements (Tree *t)
+int countTreeElements(Tree *t)
 {
-	if (t != NULL)
-		return(1 + countTreeElements(t->sae) + countTreeElements(t->sad));
+	if (t != NULL){
+		int count;
+	count = 1 + countTreeElements(t->sae) + countTreeElements(t->sad);
+	return count;
+	}
 	else
 		return(0);
 }

@@ -110,7 +110,7 @@ namespace Project {
 
 
 
-	private: System::Windows::Forms::ToolStripMenuItem^  alterarNóToolStripMenuItem;
+
 
 
 
@@ -187,7 +187,6 @@ namespace Project {
 				 this->button4 = (gcnew System::Windows::Forms::Button());
 				 this->cmsTree = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 				 this->AddNode = (gcnew System::Windows::Forms::ToolStripMenuItem());
-				 this->alterarNóToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->RemoveNode = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->printTree = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->deleteTree = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -246,34 +245,34 @@ namespace Project {
 						 this->verStatusToolStripMenuItem, this->excluirEstruturaToolStripMenuItem
 				 });
 				 this->cmsPilha->Name = L"cmsPilha";
-				 this->cmsPilha->Size = System::Drawing::Size(216, 92);
+				 this->cmsPilha->Size = System::Drawing::Size(254, 100);
 				 this->cmsPilha->Opened += gcnew System::EventHandler(this, &MyForm::cmsPilha_Opened);
 				 // 
 				 // pushPilha
 				 // 
 				 this->pushPilha->Name = L"pushPilha";
-				 this->pushPilha->Size = System::Drawing::Size(215, 22);
+				 this->pushPilha->Size = System::Drawing::Size(253, 24);
 				 this->pushPilha->Text = L"Adicionar Elemento (Push)";
 				 this->pushPilha->Click += gcnew System::EventHandler(this, &MyForm::pushPilha_Click);
 				 // 
 				 // removerElementoPopToolStripMenuItem
 				 // 
 				 this->removerElementoPopToolStripMenuItem->Name = L"removerElementoPopToolStripMenuItem";
-				 this->removerElementoPopToolStripMenuItem->Size = System::Drawing::Size(215, 22);
+				 this->removerElementoPopToolStripMenuItem->Size = System::Drawing::Size(253, 24);
 				 this->removerElementoPopToolStripMenuItem->Text = L"Remover Elemento (Pop)";
 				 this->removerElementoPopToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::popPilha_Click);
 				 // 
 				 // verStatusToolStripMenuItem
 				 // 
 				 this->verStatusToolStripMenuItem->Name = L"verStatusToolStripMenuItem";
-				 this->verStatusToolStripMenuItem->Size = System::Drawing::Size(215, 22);
+				 this->verStatusToolStripMenuItem->Size = System::Drawing::Size(253, 24);
 				 this->verStatusToolStripMenuItem->Text = L"Ver Status";
 				 this->verStatusToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::printPile_Click);
 				 // 
 				 // excluirEstruturaToolStripMenuItem
 				 // 
 				 this->excluirEstruturaToolStripMenuItem->Name = L"excluirEstruturaToolStripMenuItem";
-				 this->excluirEstruturaToolStripMenuItem->Size = System::Drawing::Size(215, 22);
+				 this->excluirEstruturaToolStripMenuItem->Size = System::Drawing::Size(253, 24);
 				 this->excluirEstruturaToolStripMenuItem->Text = L"Excluir Pilha";
 				 this->excluirEstruturaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::excluirPilha_Click);
 				 // 
@@ -285,40 +284,40 @@ namespace Project {
 						 this->removerElementoToolStripMenuItem, this->alterarElementoToolStripMenuItem, this->verStatusToolStripMenuItem1, this->excluirListaToolStripMenuItem
 				 });
 				 this->cmsLista->Name = L"contextMenuStrip1";
-				 this->cmsLista->Size = System::Drawing::Size(179, 114);
+				 this->cmsLista->Size = System::Drawing::Size(210, 124);
 				 this->cmsLista->Opened += gcnew System::EventHandler(this, &MyForm::cmsLista_Opened);
 				 // 
 				 // adicionarElementoToolStripMenuItem
 				 // 
 				 this->adicionarElementoToolStripMenuItem->Name = L"adicionarElementoToolStripMenuItem";
-				 this->adicionarElementoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->adicionarElementoToolStripMenuItem->Size = System::Drawing::Size(209, 24);
 				 this->adicionarElementoToolStripMenuItem->Text = L"Adicionar Elemento";
 				 this->adicionarElementoToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::addListElement_Click);
 				 // 
 				 // removerElementoToolStripMenuItem
 				 // 
 				 this->removerElementoToolStripMenuItem->Name = L"removerElementoToolStripMenuItem";
-				 this->removerElementoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->removerElementoToolStripMenuItem->Size = System::Drawing::Size(209, 24);
 				 this->removerElementoToolStripMenuItem->Text = L"Remover Elemento";
 				 this->removerElementoToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::removeListElement_Click);
 				 // 
 				 // alterarElementoToolStripMenuItem
 				 // 
 				 this->alterarElementoToolStripMenuItem->Name = L"alterarElementoToolStripMenuItem";
-				 this->alterarElementoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->alterarElementoToolStripMenuItem->Size = System::Drawing::Size(209, 24);
 				 this->alterarElementoToolStripMenuItem->Text = L"Alterar Posições";
 				 // 
 				 // verStatusToolStripMenuItem1
 				 // 
 				 this->verStatusToolStripMenuItem1->Name = L"verStatusToolStripMenuItem1";
-				 this->verStatusToolStripMenuItem1->Size = System::Drawing::Size(178, 22);
+				 this->verStatusToolStripMenuItem1->Size = System::Drawing::Size(209, 24);
 				 this->verStatusToolStripMenuItem1->Text = L"Ver Status";
 				 this->verStatusToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::printList_Click);
 				 // 
 				 // excluirListaToolStripMenuItem
 				 // 
 				 this->excluirListaToolStripMenuItem->Name = L"excluirListaToolStripMenuItem";
-				 this->excluirListaToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->excluirListaToolStripMenuItem->Size = System::Drawing::Size(209, 24);
 				 this->excluirListaToolStripMenuItem->Text = L"Excluir Lista";
 				 this->excluirListaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::removeList_Click);
 				 // 
@@ -330,34 +329,34 @@ namespace Project {
 						 this->removerToolStripMenuItem, this->verStatusToolStripMenuItem2, this->excluirFilaToolStripMenuItem
 				 });
 				 this->cmsFila->Name = L"contextMenuStrip1";
-				 this->cmsFila->Size = System::Drawing::Size(179, 92);
+				 this->cmsFila->Size = System::Drawing::Size(210, 100);
 				 this->cmsFila->Opened += gcnew System::EventHandler(this, &MyForm::cmsFila_Opened);
 				 // 
 				 // adicionarToolStripMenuItem
 				 // 
 				 this->adicionarToolStripMenuItem->Name = L"adicionarToolStripMenuItem";
-				 this->adicionarToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->adicionarToolStripMenuItem->Size = System::Drawing::Size(209, 24);
 				 this->adicionarToolStripMenuItem->Text = L"Adicionar Elemento";
 				 this->adicionarToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::pushFila_Click);
 				 // 
 				 // removerToolStripMenuItem
 				 // 
 				 this->removerToolStripMenuItem->Name = L"removerToolStripMenuItem";
-				 this->removerToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->removerToolStripMenuItem->Size = System::Drawing::Size(209, 24);
 				 this->removerToolStripMenuItem->Text = L"Remover Elemento";
 				 this->removerToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::popFila_Click);
 				 // 
 				 // verStatusToolStripMenuItem2
 				 // 
 				 this->verStatusToolStripMenuItem2->Name = L"verStatusToolStripMenuItem2";
-				 this->verStatusToolStripMenuItem2->Size = System::Drawing::Size(178, 22);
+				 this->verStatusToolStripMenuItem2->Size = System::Drawing::Size(209, 24);
 				 this->verStatusToolStripMenuItem2->Text = L"Ver Status";
 				 this->verStatusToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::printfila_Click);
 				 // 
 				 // excluirFilaToolStripMenuItem
 				 // 
 				 this->excluirFilaToolStripMenuItem->Name = L"excluirFilaToolStripMenuItem";
-				 this->excluirFilaToolStripMenuItem->Size = System::Drawing::Size(178, 22);
+				 this->excluirFilaToolStripMenuItem->Size = System::Drawing::Size(209, 24);
 				 this->excluirFilaToolStripMenuItem->Text = L"Excluir Fila";
 				 this->excluirFilaToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::excluirFila_Click);
 				 // 
@@ -374,7 +373,7 @@ namespace Project {
 				 this->Request->AutoSize = true;
 				 this->Request->Location = System::Drawing::Point(251, 9);
 				 this->Request->Name = L"Request";
-				 this->Request->Size = System::Drawing::Size(35, 13);
+				 this->Request->Size = System::Drawing::Size(41, 15);
 				 this->Request->TabIndex = 7;
 				 this->Request->Text = L"label2";
 				 this->Request->Visible = false;
@@ -398,7 +397,7 @@ namespace Project {
 				 this->labelStatus->ForeColor = System::Drawing::SystemColors::ControlText;
 				 this->labelStatus->Location = System::Drawing::Point(249, 9);
 				 this->labelStatus->Name = L"labelStatus";
-				 this->labelStatus->Size = System::Drawing::Size(41, 13);
+				 this->labelStatus->Size = System::Drawing::Size(52, 17);
 				 this->labelStatus->TabIndex = 9;
 				 this->labelStatus->Text = L"label1";
 				 this->labelStatus->Visible = false;
@@ -408,7 +407,7 @@ namespace Project {
 				 this->tblPrint->BackColor = System::Drawing::SystemColors::Desktop;
 				 this->tblPrint->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::OutsetDouble;
 				 this->tblPrint->ColumnCount = 1;
-				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 772)));
+				 this->tblPrint->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 775)));
 				 this->tblPrint->GrowStyle = System::Windows::Forms::TableLayoutPanelGrowStyle::AddColumns;
 				 this->tblPrint->Location = System::Drawing::Point(242, 29);
 				 this->tblPrint->Name = L"tblPrint";
@@ -444,45 +443,39 @@ namespace Project {
 				 // cmsTree
 				 // 
 				 this->cmsTree->ImageScalingSize = System::Drawing::Size(20, 20);
-				 this->cmsTree->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
-					 this->AddNode, this->alterarNóToolStripMenuItem,
-						 this->RemoveNode, this->printTree, this->deleteTree
+				 this->cmsTree->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+					 this->AddNode, this->RemoveNode,
+						 this->printTree, this->deleteTree
 				 });
 				 this->cmsTree->Name = L"contextMenuStrip1";
-				 this->cmsTree->Size = System::Drawing::Size(153, 136);
+				 this->cmsTree->Size = System::Drawing::Size(176, 108);
 				 this->cmsTree->Opened += gcnew System::EventHandler(this, &MyForm::cmsTree_Opened);
 				 // 
 				 // AddNode
 				 // 
 				 this->AddNode->Name = L"AddNode";
-				 this->AddNode->Size = System::Drawing::Size(152, 22);
+				 this->AddNode->Size = System::Drawing::Size(181, 26);
 				 this->AddNode->Text = L"Adicionar Nó";
 				 this->AddNode->Click += gcnew System::EventHandler(this, &MyForm::AddNode_Click);
-				 // 
-				 // alterarNóToolStripMenuItem
-				 // 
-				 this->alterarNóToolStripMenuItem->Name = L"alterarNóToolStripMenuItem";
-				 this->alterarNóToolStripMenuItem->Size = System::Drawing::Size(152, 22);
-				 this->alterarNóToolStripMenuItem->Text = L"Alterar Nó";
 				 // 
 				 // RemoveNode
 				 // 
 				 this->RemoveNode->Name = L"RemoveNode";
-				 this->RemoveNode->Size = System::Drawing::Size(152, 22);
+				 this->RemoveNode->Size = System::Drawing::Size(181, 26);
 				 this->RemoveNode->Text = L"Remover Nó";
 				 this->RemoveNode->Click += gcnew System::EventHandler(this, &MyForm::RemoveNode_Click);
 				 // 
 				 // printTree
 				 // 
 				 this->printTree->Name = L"printTree";
-				 this->printTree->Size = System::Drawing::Size(152, 22);
+				 this->printTree->Size = System::Drawing::Size(181, 26);
 				 this->printTree->Text = L"Ver Status";
 				 this->printTree->Click += gcnew System::EventHandler(this, &MyForm::printTree_Click);
 				 // 
 				 // deleteTree
 				 // 
 				 this->deleteTree->Name = L"deleteTree";
-				 this->deleteTree->Size = System::Drawing::Size(152, 22);
+				 this->deleteTree->Size = System::Drawing::Size(181, 26);
 				 this->deleteTree->Text = L"Excluir Árvore";
 				 this->deleteTree->Click += gcnew System::EventHandler(this, &MyForm::deleteTree_Click);
 				 // 
@@ -491,6 +484,7 @@ namespace Project {
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(1011, 585);
+				 this->ControlBox = false;
 				 this->Controls->Add(this->button4);
 				 this->Controls->Add(this->TreeBox);
 				 this->Controls->Add(this->tblPrint);
@@ -578,7 +572,7 @@ namespace Project {
 		newButton->Location = searchValidLocation();
 		this->panel1->Controls->Add(newButton);
 		newButton->Name = "T" + _countTree;
-		_countPile++;
+		_countTree++;
 		newButton->Visible = true;
 		newButton->Tag = "NULL";
 		newButton->Text = "0";
@@ -742,7 +736,7 @@ namespace Project {
 			if (thisButton->Tag->Equals("NULL"))
 			{
 				t = createTree();
-
+				thisButton->Tag = "";
 				insertTree(ID, value, &t, NULL);
 
 				if (firstTree == NULL) {
@@ -1163,7 +1157,7 @@ namespace Project {
 		char *ID = strdup(str.c_str());
 		char * printResult;
 
-		if (firstTree != NULL)
+		if (firstTree != NULL && ID != "NULL")
 		{
 			t = searchTree(ID, firstTree);
 			t->printStatus[0] = '\0';
